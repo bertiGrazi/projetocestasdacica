@@ -1,65 +1,267 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import {
+  Button,
+  Form,
+  Input,
+  Label,
+  TextArea,
+  TextField,
+} from "@heroui/react";
+
+const colors = [
+  {
+    name: "Primária",
+    className: "bg-brand-primary",
+    hex: "#8B5E3C",
+  },
+  {
+    name: "Secundária",
+    className: "bg-brand-secondary",
+    hex: "#D8C3A5",
+  },
+  {
+    name: "Acento",
+    className: "bg-brand-accent",
+    hex: "#6B8E23",
+  },
+  {
+    name: "Fundo",
+    className: "bg-background-primary",
+    hex: "#FAF7F2",
+  },
+  {
+    name: "Texto",
+    className: "bg-text-primary",
+    hex: "#2F2F2F",
+  },
+];
+
+export default function HomePage() {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    console.log("Dados do formulário:", data);
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-background-primary px-6 py-10">
+      <div className="mx-auto flex max-w-5xl flex-col gap-12">
+        <header>
+          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-brand-primary">
+            Cestas da Ciça
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <h1 className="text-3xl font-semibold text-text-primary">
+            Design System
+          </h1>
+
+          <p className="mt-2 text-text-secondary">
+            Visualização da identidade da marca e dos componentes principais.
+          </p>
+        </header>
+
+        <section>
+          <h2 className="mb-5 text-2xl font-semibold text-text-primary">
+            Paleta de cores
+          </h2>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+            {colors.map((color) => (
+              <div key={color.name}>
+                <div
+                  className={`h-32 rounded-lg shadow-md ${color.className}`}
+                />
+
+                <h3 className="mt-3 font-semibold text-text-primary">
+                  {color.name}
+                </h3>
+
+                <p className="text-sm text-text-muted">{color.hex}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-2xl font-semibold text-text-primary">
+            Botões
+          </h2>
+
+          <p className="mb-6 text-text-secondary">
+            Modelos disponíveis para diferentes níveis de importância.
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <Button
+              variant="primary"
+              className="bg-brand-primary text-white hover:bg-brand-primary/90"
+            >
+              Começar
+            </Button>
+
+            <Button
+              variant="secondary"
+              className="bg-brand-secondary text-text-primary"
+            >
+              Ver produtos
+            </Button>
+
+            <Button
+              variant="outline"
+              className="border-brand-primary text-brand-primary"
+            >
+              Saiba mais
+            </Button>
+
+            <Button
+              variant="ghost"
+              className="text-brand-primary hover:bg-brand-secondary/40"
+            >
+              Voltar
+            </Button>
+
+            <Button variant="danger">Excluir</Button>
+          </div>
+
+          <h3 className="mb-4 mt-8 text-lg font-semibold text-text-primary">
+            Tamanhos e estados
+          </h3>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Button
+              size="sm"
+              className="bg-brand-primary text-white"
+            >
+              Pequeno
+            </Button>
+
+            <Button
+              size="md"
+              className="bg-brand-primary text-white"
+            >
+              Médio
+            </Button>
+
+            <Button
+              size="lg"
+              className="bg-brand-primary text-white"
+            >
+              Grande
+            </Button>
+
+            <Button
+              isDisabled
+              className="bg-brand-primary text-white"
+            >
+              Desabilitado
+            </Button>
+
+            <Button
+              isPending
+              className="bg-brand-primary text-white"
+            >
+              Carregando
+            </Button>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-2xl font-semibold text-text-primary">
+            Formulário
+          </h2>
+
+          <p className="mb-6 text-text-secondary">
+            Exemplo básico para dados de um pedido.
+          </p>
+
+          <Form
+            aria-label="Formulário de exemplo"
+            onSubmit={handleSubmit}
+            className="max-w-xl space-y-5 rounded-xl border border-brand-secondary bg-white p-6 shadow-md"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <TextField
+              name="name"
+              isRequired
+              className="w-full"
+            >
+              <Label className="mb-2 block font-medium text-text-primary">
+                Nome
+              </Label>
+
+              <Input
+                placeholder="Digite seu nome"
+                className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
+              />
+            </TextField>
+
+            <TextField
+              name="phone"
+              className="w-full"
+            >
+              <Label className="mb-2 block font-medium text-text-primary">
+                Telefone
+              </Label>
+
+              <Input
+                type="tel"
+                placeholder="(11) 99999-9999"
+                className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
+              />
+            </TextField>
+
+            <TextField
+              name="occasion"
+              className="w-full"
+            >
+              <Label className="mb-2 block font-medium text-text-primary">
+                Ocasião
+              </Label>
+
+              <Input
+                placeholder="Ex.: aniversário"
+                className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
+              />
+            </TextField>
+
+            <TextField
+              name="message"
+              className="w-full"
+            >
+              <Label className="mb-2 block font-medium text-text-primary">
+                Observações
+              </Label>
+
+              <TextArea
+                placeholder="Conte um pouco sobre o presente..."
+                className="min-h-28 w-full resize-none rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
+              />
+            </TextField>
+
+            <div className="flex w-full flex-col gap-3 sm:flex-row">
+              <Button
+                type="submit"
+                fullWidth
+                className="bg-brand-primary text-white hover:bg-brand-primary/90"
+              >
+                Solicitar orçamento
+              </Button>
+
+              <Button
+                type="reset"
+                variant="outline"
+                fullWidth
+                className="border-brand-primary text-brand-primary"
+              >
+                Limpar
+              </Button>
+            </div>
+          </Form>
+        </section>
+      </div>
+    </main>
   );
 }
