@@ -2,266 +2,199 @@
 
 import {
   Button,
-  Form,
   Input,
   Label,
   TextArea,
   TextField,
 } from "@heroui/react";
 
-const colors = [
-  {
-    name: "Primária",
-    className: "bg-brand-primary",
-    hex: "#8B5E3C",
-  },
-  {
-    name: "Secundária",
-    className: "bg-brand-secondary",
-    hex: "#D8C3A5",
-  },
-  {
-    name: "Acento",
-    className: "bg-brand-accent",
-    hex: "#6B8E23",
-  },
-  {
-    name: "Fundo",
-    className: "bg-background-primary",
-    hex: "#FAF7F2",
-  },
-  {
-    name: "Texto",
-    className: "bg-text-primary",
-    hex: "#2F2F2F",
-  },
-];
+import { Container } from "@/src/components/layout/container";
+import { PageLayout } from "@/src/components/layout/page-layout";
+import { PrimaryButton } from "@/src/components/ui/primary-button";
 
-export default function HomePage() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData);
-
-    console.log("Dados do formulário:", data);
-  }
-
+export default function DesignSystemPage() {
   return (
-    <main className="min-h-screen bg-background-primary px-6 py-10">
-      <div className="mx-auto flex max-w-5xl flex-col gap-12">
-        <header>
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-brand-primary">
+    <PageLayout>
+      <Container className="py-8 sm:py-12">
+        <header className="mb-10">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-primary">
             Cestas da Ciça
           </p>
 
-          <h1 className="text-3xl font-semibold text-text-primary">
+          <h1 className="mt-2 font-heading text-3xl font-semibold sm:text-4xl">
             Design System
           </h1>
 
-          <p className="mt-2 text-text-secondary">
-            Visualização da identidade da marca e dos componentes principais.
+          <p className="mt-3 max-w-2xl text-text-secondary">
+            Página para testar componentes, estilos e responsividade.
           </p>
         </header>
 
-        <section>
-          <h2 className="mb-5 text-2xl font-semibold text-text-primary">
-            Paleta de cores
-          </h2>
+        <div className="space-y-12">
+          <ButtonSection />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {colors.map((color) => (
-              <div key={color.name}>
-                <div
-                  className={`h-32 rounded-lg shadow-md ${color.className}`}
-                />
+          <FormSection />
 
-                <h3 className="mt-3 font-semibold text-text-primary">
-                  {color.name}
-                </h3>
+          <ResponsiveSection />
+        </div>
+      </Container>
+    </PageLayout>
+  );
+}
 
-                <p className="text-sm text-text-muted">{color.hex}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+function ButtonSection() {
+  return (
+    <section>
+      <h2 className="font-heading text-2xl font-semibold">
+        Botões
+      </h2>
 
-        <section>
-          <h2 className="mb-2 text-2xl font-semibold text-text-primary">
-            Botões
-          </h2>
+      <p className="mt-2 text-text-secondary">
+        Variações de tamanho, estado e importância.
+      </p>
 
-          <p className="mb-6 text-text-secondary">
-            Modelos disponíveis para diferentes níveis de importância.
-          </p>
+      <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+        <PrimaryButton className="w-full sm:w-auto">
+          Começar
+        </PrimaryButton>
 
-          <div className="flex flex-wrap gap-4">
-            <Button
-              variant="primary"
-              className="bg-brand-primary text-white hover:bg-brand-primary/90"
-            >
-              Começar
-            </Button>
+        <Button
+          variant="outline"
+          className="w-full border-brand-primary text-brand-primary sm:w-auto"
+        >
+          Ver detalhes
+        </Button>
 
-            <Button
-              variant="secondary"
-              className="bg-brand-secondary text-text-primary"
-            >
-              Ver produtos
-            </Button>
+        <Button
+          variant="ghost"
+          className="w-full text-brand-primary sm:w-auto"
+        >
+          Voltar
+        </Button>
 
-            <Button
-              variant="outline"
-              className="border-brand-primary text-brand-primary"
-            >
-              Saiba mais
-            </Button>
-
-            <Button
-              variant="ghost"
-              className="text-brand-primary hover:bg-brand-secondary/40"
-            >
-              Voltar
-            </Button>
-
-            <Button variant="danger">Excluir</Button>
-          </div>
-
-          <h3 className="mb-4 mt-8 text-lg font-semibold text-text-primary">
-            Tamanhos e estados
-          </h3>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <Button
-              size="sm"
-              className="bg-brand-primary text-white"
-            >
-              Pequeno
-            </Button>
-
-            <Button
-              size="md"
-              className="bg-brand-primary text-white"
-            >
-              Médio
-            </Button>
-
-            <Button
-              size="lg"
-              className="bg-brand-primary text-white"
-            >
-              Grande
-            </Button>
-
-            <Button
-              isDisabled
-              className="bg-brand-primary text-white"
-            >
-              Desabilitado
-            </Button>
-
-            <Button
-              isPending
-              className="bg-brand-primary text-white"
-            >
-              Carregando
-            </Button>
-          </div>
-        </section>
-
-        <section>
-          <h2 className="mb-2 text-2xl font-semibold text-text-primary">
-            Formulário
-          </h2>
-
-          <p className="mb-6 text-text-secondary">
-            Exemplo básico para dados de um pedido.
-          </p>
-
-          <Form
-            aria-label="Formulário de exemplo"
-            onSubmit={handleSubmit}
-            className="max-w-xl space-y-5 rounded-xl border border-brand-secondary bg-white p-6 shadow-md"
-          >
-            <TextField
-              name="name"
-              isRequired
-              className="w-full"
-            >
-              <Label className="mb-2 block font-medium text-text-primary">
-                Nome
-              </Label>
-
-              <Input
-                placeholder="Digite seu nome"
-                className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
-              />
-            </TextField>
-
-            <TextField
-              name="phone"
-              className="w-full"
-            >
-              <Label className="mb-2 block font-medium text-text-primary">
-                Telefone
-              </Label>
-
-              <Input
-                type="tel"
-                placeholder="(11) 99999-9999"
-                className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
-              />
-            </TextField>
-
-            <TextField
-              name="occasion"
-              className="w-full"
-            >
-              <Label className="mb-2 block font-medium text-text-primary">
-                Ocasião
-              </Label>
-
-              <Input
-                placeholder="Ex.: aniversário"
-                className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
-              />
-            </TextField>
-
-            <TextField
-              name="message"
-              className="w-full"
-            >
-              <Label className="mb-2 block font-medium text-text-primary">
-                Observações
-              </Label>
-
-              <TextArea
-                placeholder="Conte um pouco sobre o presente..."
-                className="min-h-28 w-full resize-none rounded-md border border-brand-secondary bg-background-primary px-4 py-3 text-text-primary outline-none focus:border-brand-primary"
-              />
-            </TextField>
-
-            <div className="flex w-full flex-col gap-3 sm:flex-row">
-              <Button
-                type="submit"
-                fullWidth
-                className="bg-brand-primary text-white hover:bg-brand-primary/90"
-              >
-                Solicitar orçamento
-              </Button>
-
-              <Button
-                type="reset"
-                variant="outline"
-                fullWidth
-                className="border-brand-primary text-brand-primary"
-              >
-                Limpar
-              </Button>
-            </div>
-          </Form>
-        </section>
+        <PrimaryButton
+          isDisabled
+          className="w-full sm:w-auto"
+        >
+          Desabilitado
+        </PrimaryButton>
       </div>
-    </main>
+    </section>
+  );
+}
+
+function FormSection() {
+  return (
+    <section>
+      <h2 className="font-heading text-2xl font-semibold">
+        Formulário
+      </h2>
+
+      <p className="mt-2 text-text-secondary">
+        Exemplo simples para testar os campos.
+      </p>
+
+      <form className="mt-6 max-w-xl space-y-5 rounded-xl border border-brand-secondary bg-white p-4 shadow-md sm:p-6">
+        <TextField
+          name="name"
+          isRequired
+          className="w-full"
+        >
+          <Label className="mb-2 block font-medium">
+            Nome
+          </Label>
+
+          <Input
+            placeholder="Digite seu nome"
+            className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 outline-none focus:border-brand-primary"
+          />
+        </TextField>
+
+        <TextField
+          name="phone"
+          className="w-full"
+        >
+          <Label className="mb-2 block font-medium">
+            Telefone
+          </Label>
+
+          <Input
+            type="tel"
+            placeholder="(11) 99999-9999"
+            className="w-full rounded-md border border-brand-secondary bg-background-primary px-4 py-3 outline-none focus:border-brand-primary"
+          />
+        </TextField>
+
+        <TextField
+          name="message"
+          className="w-full"
+        >
+          <Label className="mb-2 block font-medium">
+            Observações
+          </Label>
+
+          <TextArea
+            placeholder="Conte um pouco sobre o presente..."
+            className="min-h-28 w-full resize-none rounded-md border border-brand-secondary bg-background-primary px-4 py-3 outline-none focus:border-brand-primary"
+          />
+        </TextField>
+
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <PrimaryButton
+            type="submit"
+            className="w-full"
+          >
+            Enviar
+          </PrimaryButton>
+
+          <Button
+            type="reset"
+            variant="outline"
+            className="w-full border-brand-primary text-brand-primary"
+          >
+            Limpar
+          </Button>
+        </div>
+      </form>
+    </section>
+  );
+}
+
+function ResponsiveSection() {
+  return (
+    <section>
+      <h2 className="font-heading text-2xl font-semibold">
+        Grid responsivo
+      </h2>
+
+      <p className="mt-2 text-text-secondary">
+        Redimensione a tela para observar a mudança das colunas.
+      </p>
+
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {["Aniversário", "Romântico", "Agradecimento"].map(
+          (occasion) => (
+            <article
+              key={occasion}
+              className="rounded-xl border border-brand-secondary bg-white p-5 shadow-sm"
+            >
+              <div className="mb-4 h-32 rounded-lg bg-brand-secondary" />
+
+              <h3 className="font-heading text-xl font-semibold">
+                {occasion}
+              </h3>
+
+              <p className="mt-2 text-sm text-text-secondary">
+                Exemplo de card adaptável para diferentes tamanhos de tela.
+              </p>
+
+              <PrimaryButton className="mt-5 w-full">
+                Ver opções
+              </PrimaryButton>
+            </article>
+          ),
+        )}
+      </div>
+    </section>
   );
 }
