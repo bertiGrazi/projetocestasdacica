@@ -1,7 +1,9 @@
-export default function Occasions() {
+import { PageLayout } from "@/src/components/layout/page-layout";
+
+export default function OccasionsPage() {
   return (
-    <main>
-      <h1>Occasions</h1>
-    </main>
+    <PageLayout>
+      <h1>Escolha a ocasião</h1>
+    </PageLayout>
   );
 }

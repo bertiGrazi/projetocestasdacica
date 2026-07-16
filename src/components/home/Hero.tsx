@@ -1,8 +1,18 @@
+"use client";
+
+import {useRouter} from "next/navigation"
+
 import { Container } from "@/src/components/layout/container";
 import { PageLayout } from "@/src/components/layout/page-layout";
 import { PrimaryButton } from "@/src/components/ui/primary-button";
 
 export function Hero() {
+  const router = useRouter();
+
+  function handleStart() {
+    router.push('/occasions');
+  }
+
   return (
     <PageLayout>
       <Container className="flex min-h-screen flex-col items-center justify-center text-center">
@@ -27,6 +37,7 @@ export function Hero() {
           <PrimaryButton
             type="button"
             className="mt-8 w-full"
+            onPress={handleStart}
           >
             Começar
           </PrimaryButton>
