@@ -1,5 +1,8 @@
 import { Container } from "@/src/components/layout/container";
 import { PageLayout } from "@/src/components/layout/page-layout";
+import { OccasionCard } from "./occasion-card";
+
+import { occasions } from "@/src/data/occasions";
 
 export default function OccasionsPageContent() {
   return (
@@ -14,6 +17,16 @@ export default function OccasionsPageContent() {
             Selecione uma opção para começarmos a montar sua cesta.
           </p>
         </header>
+
+        <div className="mt-10 grid grid-cols-2 gap-4">
+          {occasions.map((occasion) => (
+            <OccasionCard
+              key={occasion.id}
+              title={occasion.title}
+              emoji={occasion.emoji}
+            />
+          ))} 
+        </div>
       </Container>
     </PageLayout>
   );
