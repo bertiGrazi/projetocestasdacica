@@ -8,6 +8,8 @@ import { occasions } from "@/src/data/occasions";
 
 import { useState } from "react";
 
+import Link from "next/link";
+
 export default function OccasionsPageContent() {
   const [selectedOccasion, setSelectedOccasion] = useState<string | null>(null);
   
@@ -26,14 +28,15 @@ export default function OccasionsPageContent() {
 
         <div className="mt-10 grid grid-cols-2 gap-4">
           {occasions.map((occasion) => (
-            <OccasionCard
-              key={occasion.id}
-              title={occasion.title}
-              emoji={occasion.emoji}
-              isSelected={selectedOccasion === occasion.id}
-              onSelect={() => setSelectedOccasion(occasion.id)}
-            />
-          ))} 
+            <Link href={`/occasions/${occasion.id}`} key={occasion.id}>
+              <OccasionCard
+                title={occasion.title}
+                emoji={occasion.emoji}
+                isSelected={selectedOccasion === occasion.id}
+                onSelect={() => setSelectedOccasion(occasion.id)}
+              />
+            </Link>
+          ))}
         </div>
       </Container>
     </PageLayout>
