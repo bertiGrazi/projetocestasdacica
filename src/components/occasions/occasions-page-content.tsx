@@ -1,10 +1,16 @@
+"use client";
+
 import { Container } from "@/src/components/layout/container";
 import { PageLayout } from "@/src/components/layout/page-layout";
 import { OccasionCard } from "./occasion-card";
 
 import { occasions } from "@/src/data/occasions";
 
+import { useState } from "react";
+
 export default function OccasionsPageContent() {
+  const [selectedOccasion, setSelectedOccasion] = useState<string | null>(null);
+  
   return (
     <PageLayout>
       <Container className="py-10">
@@ -24,6 +30,8 @@ export default function OccasionsPageContent() {
               key={occasion.id}
               title={occasion.title}
               emoji={occasion.emoji}
+              isSelected={selectedOccasion === occasion.id}
+              onSelect={() => setSelectedOccasion(occasion.id)}
             />
           ))} 
         </div>
