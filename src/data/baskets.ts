@@ -22,5 +22,12 @@ export const baskets = [
     price: 149.9,
     image: "/images/baskets/cesta_default_cica.png",
     occasionId: "breakfast",
+    items: [
+      "Caneca personalizada",
+      "Café",
+      "Biscoitos",
+      "Chocolate",
+      "Cartão personalizado",
+    ],
   },
 ];
