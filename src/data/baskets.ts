@@ -4,7 +4,7 @@ export const baskets = [
     name: "Cesta Aniversário Clássica",
     description: "Uma seleção especial para deixar o aniversário ainda mais feliz.",
     price: 129.9,
-    image: "/images/baskets/birthday-classic.jpg",
+    image: "/images/baskets/cesta_default_cica.png",
     occasionId: "birthday",
   },
   {
@@ -12,7 +12,7 @@ export const baskets = [
     name: "Cesta Aniversário Premium",
     description: "Uma cesta completa para celebrar em grande estilo.",
     price: 189.9,
-    image: "/images/baskets/birthday-premium.jpg",
+    image: "/images/baskets/cesta_default_cica.png",
     occasionId: "birthday",
   },
   {
@@ -20,7 +20,7 @@ export const baskets = [
     name: "Café da Manhã Especial",
     description: "Um café da manhã cheio de carinho para começar bem o dia.",
     price: 149.9,
-    image: "/images/baskets/breakfast-classic.jpg",
+    image: "/images/baskets/cesta_default_cica.png",
     occasionId: "breakfast",
   },
 ];

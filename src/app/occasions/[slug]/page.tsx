@@ -34,10 +34,10 @@ export default async function OccassionsPage({ params }: OccassionsPageProps) {
   return (
     <main className="min-h-screen px-4 py-8">
       <h1 className="text-3xl font-bold">
-        {occasion?.emoji} {occasion?.title}
+        {occasion.emoji} {occasion.title}
       </h1>
       <p className="mt-2 text-gray-600">
-        {occasion?.description}
+        {occasion.description}
       </p>
 
       <section className="mt-10">
@@ -50,9 +50,11 @@ export default async function OccassionsPage({ params }: OccassionsPageProps) {
           {occasionBaskets.map((basket) => (
             <BasketCard
               key={basket.id}
+              id={basket.id}
               name={basket.name}
               description={basket.description}
               price={basket.price}
+              image={basket.image}
             />
           ))}
         </div>
